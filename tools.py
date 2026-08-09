@@ -41,6 +41,7 @@ tavily = TavilyClient(api_key=os.getenv("TAVILY_API_KEY"))
 # -----------------------------------------------------------------------------
 @tool
 def web_Search(query: str) -> str:
+    """Search the public web for recent and reliable information about a topic."""
     print("query recived is ", query)
     response = tavily.search(query=query, max_results=3)
 
@@ -73,6 +74,7 @@ print(web_Search.invoke("what is the recent news on pok    "))
 # -----------------------------------------------------------------------------
 @tool
 def scrape_Url(url: str) -> str:
+    """Scrape a webpage URL and return a cleaned text preview."""
     try:
         res = requests.get(url, timeout=8, headers={"User-Agent": "Mozilla/5.0"})
         soup = BeautifulSoup(res.text, "html.parser")
