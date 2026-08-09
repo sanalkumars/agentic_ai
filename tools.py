@@ -55,7 +55,7 @@ def web_Search(query: str) -> str:
 
 
 # Execute the tool immediately with a sample question to test its output.
-print(web_Search.invoke("what is the recent news on pok    "))
+# print(web_Search.invoke("what is the recent news on pok    "))
 
 # -----------------------------------------------------------------------------
 # scrape_Url(url: str) -> str

@@ -83,4 +83,5 @@ Please provide your review in the following format:
 - Final Verdict: [Pass / Needs Revision]"""),
 ])
 
-critic_Chain = critics_prompt | llm | StrOutputParser()
+# we will user the groq llm(llm2) for criticising the final report
+critic_Chain = critics_prompt | llm2 | StrOutputParser()
