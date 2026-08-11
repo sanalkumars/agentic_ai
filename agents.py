@@ -20,7 +20,7 @@ load_dotenv()
 # models
 llm = ChatGoogleGenerativeAI(model="gemini-3.5-flash", temperature=0)
 
-llm2 = ChatGroq(model="llama-3.1-8b-instant", temperature=0)
+llm2 = ChatGroq(model="llama-3.3-70b-versatile", temperature=0)
 
 # 1st Research Agent
 def build_Search_Agent():
@@ -57,7 +57,7 @@ Be detailed, factual and professional."""),
 
 # we create a writer chain
 
-writer_Chain = writer_prompt | llm | StrOutputParser()
+writer_Chain = writer_prompt | llm2 | StrOutputParser()
 
 # critics prompt
 critics_prompt = ChatPromptTemplate.from_messages([

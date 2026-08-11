@@ -15,11 +15,33 @@ This is a good example of an agentic research pipeline that mixes LLM reasoning 
 
 The current project is made up of these main files:
 
+- [app.py](app.py) provides the Streamlit-based web user interface for running the research workflow in a browser.
 - [agents.py](agents.py) configures the LLM models, search agent, reader agent, writer chain, and critic chain.
 - [tools.py](tools.py) provides the two custom LangChain tools used by the agents: web search and URL scraping.
 - [pipeline.py](pipeline.py) orchestrates the whole workflow and stores the intermediate outputs in a shared state dictionary.
 - [pyproject.toml](pyproject.toml) declares the project metadata and dependencies.
 - [requirement.txt](requirement.txt) lists the requirements used by the environment.
+
+## Streamlit UI
+
+The repository now includes a Streamlit web UI implemented in [app.py](app.py). It gives the research pipeline a browser-based front end where a topic can be entered in the sidebar, the pipeline can be launched, and the run history and generated outputs are shown in tabs.
+
+The UI is designed around the same internal flow as the pipeline:
+
+- Search Agent finds public information
+- Reader Agent selects and scrapes a relevant page
+- Writer Chain creates the final report
+- Critic Chain evaluates the report
+
+### Run locally
+
+Make sure the dependencies are installed and then start the app with:
+
+```bash
+streamlit run app.py
+```
+
+Once the app is running, open the local Streamlit URL in your browser and submit a research topic from the left-side control deck.
 
 ## How the system works
 
