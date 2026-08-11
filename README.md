@@ -11,6 +11,8 @@ The project is intentionally structured around a simple workflow:
 
 This is a good example of an agentic research pipeline that mixes LLM reasoning with external tools.
 
+## Activate evironment for local => .venv\Scripts\activate   
+
 ## Repository structure
 
 The current project is made up of these main files:
