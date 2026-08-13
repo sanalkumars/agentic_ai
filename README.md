@@ -311,3 +311,7 @@ The runtime package set is defined in [pyproject.toml](pyproject.toml) and inclu
 ## Summary
 
 This repository demonstrates a practical multi-agent AI research flow. The value comes from combining external searching, page extraction, structured report generation, and LLM-based evaluation in a single pipeline.
+
+## Project Deployed using streamlit cloud
+
+ - url : https://ai-agent-6tzvjafpl4dsy8et3vg9au.streamlit.app/
