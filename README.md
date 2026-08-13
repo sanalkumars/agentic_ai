@@ -314,4 +314,4 @@ This repository demonstrates a practical multi-agent AI research flow. The value
 
 ## Project Deployed using streamlit cloud
 
- - url : https://ai-agent-6tzvjafpl4dsy8et3vg9au.streamlit.app/
+ - url : https://agenticai-s5tvtmtwuw2yaxnzacfxrd.streamlit.app/
