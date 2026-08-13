@@ -19,11 +19,23 @@ from rich import print
 # Import dotenv loader that reads key/value pairs from a .env file.
 from dotenv import load_dotenv
 
+import streamlit as st
+
 # Load variables from a local .env file into the process environment.
 load_dotenv()
 
-# Build a Tavily API client using the TAVILY_API_KEY environment variable.
-tavily = TavilyClient(api_key=os.getenv("TAVILY_API_KEY"))
+# Function to get API key from Streamlit secrets or environment
+def get_api_key(key_name):
+    """Get API key from Streamlit secrets or environment variables"""
+    try:
+        # Try Streamlit secrets first (Streamlit Cloud)
+        return st.secrets[key_name]
+    except (KeyError, FileNotFoundError, AttributeError):
+        # Fall back to environment variables (local .env)
+        return os.getenv(key_name)
+
+# Build a Tavily API client using the TAVILY_API_KEY from secrets or environment.
+tavily = TavilyClient(api_key=get_api_key("TAVILY_API_KEY"))
 
 # -----------------------------------------------------------------------------
 # web_Search(query: str) -> str

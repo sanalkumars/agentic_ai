@@ -3,12 +3,14 @@
 
 # create_react_agent is no longer used in the latest version of langchain, so we will use create_agent instead
 
+import os
+import streamlit as st
 from langchain.agents import create_agent
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 
 # 2. Gemini (Google GenAI) Imports
-from langchain_google_genai import ChatGoogleGenerativeAI, GoogleGenerativeAIEmbeddings
+# from langchain_google_genai import ChatGoogleGenerativeAI, GoogleGenerativeAIEmbeddings
 
 # 3. Groq Import
 from langchain_groq import ChatGroq
@@ -17,21 +19,39 @@ from tools import web_Search, scrape_Url
 from dotenv import load_dotenv
 load_dotenv()
 
-# models
-llm = ChatGoogleGenerativeAI(model="gemini-3.5-flash", temperature=0)
+# Function to get API keys from Streamlit secrets or environment
+def get_api_key(key_name):
+    """Get API key from Streamlit secrets or environment variables"""
+    try:
+        # Try Streamlit secrets first (Streamlit Cloud)
+        return st.secrets[key_name]
+    except (KeyError, FileNotFoundError):
+        # Fall back to environment variables (local .env)
+        return os.getenv(key_name)
 
-llm2 = ChatGroq(model="llama-3.3-70b-versatile", temperature=0)
+# Initialize models with API keys from secrets or env
+# llm = ChatGoogleGenerativeAI(
+#     model="gemini-1.5-flash", 
+#     temperature=0,
+#     google_api_key=get_api_key("GEMINI_API_KEY")
+# )
+
+llm2 = ChatGroq(
+    model="llama-3.3-70b-versatile", 
+    temperature=0,
+    groq_api_key=get_api_key("GROQ_API_KEY")
+)
 
 # 1st Research Agent
 def build_Search_Agent():
     return create_agent(
-        model = llm,
+        model = llm2,
         tools = [ web_Search ]
     )
 # 2nd Agent(Reader Agent)
 def build_Reader_Agent():
     return create_agent(
-        model = llm,
+        model = llm2,
         tools = [ scrape_Url ]
     )
 
